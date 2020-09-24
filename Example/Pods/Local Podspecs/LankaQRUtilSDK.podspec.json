@@ -1,0 +1,22 @@
+{
+  "name": "LankaQRUtilSDK",
+  "version": "0.1.0",
+  "summary": "A short description of LankaQRUtilSDK.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/kasunranganamw@gmail.com/LankaQRUtilSDK",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "kasunranganamw@gmail.com": "kasun_r@epiclanka.net"
+  },
+  "source": {
+    "git": "https://github.com/kasunranganamw@gmail.com/LankaQRUtilSDK.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "LankaQRUtilSDK/Classes/**/*"
+}
