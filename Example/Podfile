@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'LankaQRUtilSDK_Example' do
+  pod 'LankaQRUtilSDK', :path => '../'
+
+  target 'LankaQRUtilSDK_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
