@@ -7,12 +7,20 @@
 //
 
 import UIKit
+import LankaQRUtilSDK
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let lankaQRReader = LankaQRReader()
+        if (lankaQRReader.parseData(qrString: "12121212")) {
+            print("SUCCESS")
+        } else {
+            print("FAILED")
+        }
     }
 
     override func didReceiveMemoryWarning() {

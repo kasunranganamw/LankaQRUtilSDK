@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CFE8BD5251D0811002915E7 /* LankaQRReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE8BD4251D0811002915E7 /* LankaQRReader.swift */; };
 		13C9F412255D5866FCACD4D18EF50245 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		2541AE35DE8D1A80CE51877B9FBD2F20 /* Pods-LankaQRUtilSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC6CDEA56FFFEB46E3679DECE30F8B3 /* Pods-LankaQRUtilSDK_Example-dummy.m */; };
 		4279B65A09CAD9F7372408B626A9D819 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0276E3F9F4207B4642691DD219BEE81C /* Pods-LankaQRUtilSDK_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LankaQRUtilSDK_Example.modulemap"; sourceTree = "<group>"; };
+		0CFE8BD4251D0811002915E7 /* LankaQRReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LankaQRReader.swift; sourceTree = "<group>"; };
 		12EA47D2793E9537B84700A5D37729EC /* Pods-LankaQRUtilSDK_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LankaQRUtilSDK_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		131BB4699719AC955ED7366C85A3CADD /* Pods-LankaQRUtilSDK_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-LankaQRUtilSDK_Tests.modulemap"; sourceTree = "<group>"; };
 		158D31FE8AFCA0F25781D272FBC52EDC /* Pods-LankaQRUtilSDK_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-LankaQRUtilSDK_Tests-dummy.m"; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 			);
 			name = "Pods-LankaQRUtilSDK_Example";
 			path = "Target Support Files/Pods-LankaQRUtilSDK_Example";
+			sourceTree = "<group>";
+		};
+		0CFE8BD3251D0570002915E7 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0CFE8BD4251D0811002915E7 /* LankaQRReader.swift */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 		6DAE6124C85BF79267CC85908929C535 /* Products */ = {
@@ -213,6 +223,7 @@
 		FE4720D396372F70F5D3E5046543447A /* LankaQRUtilSDK */ = {
 			isa = PBXGroup;
 			children = (
+				0CFE8BD3251D0570002915E7 /* Source */,
 				E6E03B0719479037753867DFC8084FB1 /* Pod */,
 				B9795074D35EBA189B94129A473DFA92 /* Support Files */,
 			);
@@ -314,6 +325,21 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
+				TargetAttributes = {
+					2B143F3F70AA7360551D4ED831FE1018 = {
+						DevelopmentTeam = BCUJ488PHX;
+						ProvisioningStyle = Automatic;
+					};
+					8BF5EB83C138505036E2BDA9FFE6A695 = {
+						DevelopmentTeam = BCUJ488PHX;
+						LastSwiftMigration = 1160;
+						ProvisioningStyle = Automatic;
+					};
+					9063CBF852CFC3CCB15168100258763F = {
+						DevelopmentTeam = BCUJ488PHX;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -381,6 +407,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				710CA978863AF13D9725A4424FB26F65 /* LankaQRUtilSDK-dummy.m in Sources */,
+				0CFE8BD5251D0811002915E7 /* LankaQRReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,12 +434,15 @@
 			baseConfigurationReference = DE1694C11AB2B4E695BDC11B3DFE2B15 /* Pods-LankaQRUtilSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = BCUJ488PHX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -427,6 +457,8 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -440,12 +472,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 40793C8F0F5EB4C06B342FC3047EFCA6 /* LankaQRUtilSDK.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = BCUJ488PHX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -457,9 +493,12 @@
 				MODULEMAP_FILE = "Target Support Files/LankaQRUtilSDK/LankaQRUtilSDK.modulemap";
 				PRODUCT_MODULE_NAME = LankaQRUtilSDK;
 				PRODUCT_NAME = LankaQRUtilSDK;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -471,12 +510,16 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92F5233F5C1410F063A696C7685948FA /* LankaQRUtilSDK.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = BCUJ488PHX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -488,6 +531,8 @@
 				MODULEMAP_FILE = "Target Support Files/LankaQRUtilSDK/LankaQRUtilSDK.modulemap";
 				PRODUCT_MODULE_NAME = LankaQRUtilSDK;
 				PRODUCT_NAME = LankaQRUtilSDK;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
@@ -504,12 +549,15 @@
 			baseConfigurationReference = E30FEDD06BA826B458710C42F23E4FBC /* Pods-LankaQRUtilSDK_Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = BCUJ488PHX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -524,6 +572,8 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -660,12 +710,15 @@
 			baseConfigurationReference = 7B2C9A963087223E5AADFB5965C60051 /* Pods-LankaQRUtilSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = BCUJ488PHX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -680,6 +733,8 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -693,12 +748,15 @@
 			baseConfigurationReference = ABC450E27D0541D55D05EFF2861F3C88 /* Pods-LankaQRUtilSDK_Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = BCUJ488PHX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -713,6 +771,8 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
