@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LankaQRUtilSDK'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'Lanka QR Validation.'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-LankaQRUtilSDK is an swesome pod that will fix Lanka QR scanning issue in iOS
+LankaQRUtilSDK is an awesome pod that will fix Lanka QR scanning issue in iOS
                        DESC
 
   s.homepage         = 'https://github.com/kasunranganamw/LankaQRUtilSDK'
@@ -28,10 +28,10 @@ LankaQRUtilSDK is an swesome pod that will fix Lanka QR scanning issue in iOS
   s.source           = { :git => 'https://github.com/kasunranganamw/LankaQRUtilSDK.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/kasunranganamw'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.3'
   s.swift_version = '5.0'
   s.platforms = {
-      "ios": "8.0"
+      "ios": "9.3"
   }
 
   s.source_files = 'Source/**/*.swift'
@@ -42,5 +42,5 @@ LankaQRUtilSDK is an swesome pod that will fix Lanka QR scanning issue in iOS
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'MPQRCoreSDK', '~> 2.0.6'
 end

@@ -1,6 +1,9 @@
+platform :ios, '9.3'
+
 use_frameworks!
 
 target 'LankaQRUtilSDK_Example' do
+  pod 'MPQRCoreSDK', '~> 2.0.6'
   pod 'LankaQRUtilSDK', :path => '../'
 
   target 'LankaQRUtilSDK_Tests' do

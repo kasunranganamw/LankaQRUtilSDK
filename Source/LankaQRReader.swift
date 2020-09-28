@@ -6,37 +6,97 @@
 //
 
 import Foundation
+import MPQRCoreSDK
 
 public class LankaQRReader {
     
-    public init() {}
-    
-    var tagArr: NSMutableArray?
-    var valueArr: NSMutableArray?
+    var originalQRString: String?
+    var modifiedQRString: String?
     var tagValueDict: NSMutableDictionary?
-    var subTagValueDict62: NSMutableDictionary?
-    var subTagValueDict84: NSMutableDictionary?
+    var subTagValueDict: NSMutableDictionary?
+    var pushPaymentData: PushPaymentData?
+    var modifiedPushPaymentData: PushPaymentData?
+    var isLogRequired: Bool
     
-    public func parseQR(qrString: String) -> Bool {
-        tagArr = NSMutableArray()
-        valueArr = NSMutableArray()
+    public init() {
+        originalQRString = ""
+        modifiedQRString = ""
         tagValueDict = NSMutableDictionary()
-        subTagValueDict62 = NSMutableDictionary()
-        subTagValueDict84 = NSMutableDictionary()
-        
-        self.parseData(code: qrString)
-        let subTlv62 = tagValueDict?["62"] as? String
-        if (subTlv62?.count ?? 0) > 0 {
-            parseSubData(code: subTlv62!, subTagValueDict: subTagValueDict62)
-        }
-        let subTlv84 = tagValueDict?["84"] as? String
-        if (subTlv84?.count ?? 0) > 0 {
-            parseSubData(code: subTlv84!, subTagValueDict: subTagValueDict84)
-        }
-        
-        return (tagValueDict?.count ?? 0 > 0) ? true : false
+        subTagValueDict = NSMutableDictionary()
+        pushPaymentData = PushPaymentData()
+        modifiedPushPaymentData = PushPaymentData()
+        isLogRequired = false
     }
     
+    public func getTagValueDict() -> NSMutableDictionary? {
+        return tagValueDict
+    }
+    
+    public func getOriginalQRString() -> String? {
+        return originalQRString
+    }
+    
+    public func getModifiedQRString() -> String? {
+        return modifiedQRString
+    }
+    
+    public func setLogging(logRequired: Bool) {
+        isLogRequired = logRequired
+    }
+    
+    public func parseQR(qrString: String) -> PushPaymentData? {
+        originalQRString = qrString
+        if (isLogRequired) {
+            print("-------------------- ORIGINAL STRING --------------------\n", originalQRString!)
+        }
+        
+        let mpqrPushPaymentData: PushPaymentData
+        let mpqrResult: String
+        do {
+            try mpqrPushPaymentData = MPQRParser.parseWithoutTagValidationAndCRC(originalQRString!)
+            try mpqrResult = modifiedPushPaymentData!.generatePushPaymentString()
+            if (isLogRequired) {
+                print("-------------------- MPQR PUSH PAYMENT DATA --------------------\n", mpqrResult)
+            }
+            return mpqrPushPaymentData
+        } catch {
+            if (isLogRequired) {
+                print("-------------------- ", error, " --------------------\n-------------------- Generating New Push Payment Data --------------------\n")
+            }
+            generatePushPaymentData()
+        }
+        
+        return modifiedPushPaymentData
+    }
+    
+    func generatePushPaymentData() {
+        self.parseData(code: originalQRString!)
+        
+        if let dict = tagValueDict {
+            for (key, value) in dict {
+                setPushPaymentData(tag: key as! String, value: value as! String)
+            }
+        }
+        
+        generateModifiedQRString()
+        if (isLogRequired) {
+            print("-------------------- NEW STRING --------------------\n", modifiedQRString!)
+        }
+        
+        let result: String
+        do {
+            try modifiedPushPaymentData = MPQRParser.parseWithoutTagValidationAndCRC(modifiedQRString!)
+            try result = modifiedPushPaymentData!.generatePushPaymentString()
+            if (isLogRequired) {
+                print("-------------------- NEW PUSH PAYMENT DATA --------------------\n", result)
+            }
+        } catch {
+            if (isLogRequired) {
+                print(error)
+            }
+        }
+        
+    }
     
     func parseData(code: String) {
         let full = code
@@ -51,46 +111,167 @@ public class LankaQRReader {
         let value = (rest as NSString).substring(to: Int(length) ?? 0)
         rest = (rest as NSString).substring(from: Int(length) ?? 0)
 
-        tagValueDict?[tag] = value as AnyObject
+        tagValueDict?[tag] = value
 
         if rest.count > 0 {
             self.parseData(code: rest)
         }
     }
     
-    func parseSubData(code: String, subTagValueDict: NSMutableDictionary?) {
-        let subTagValueDict = subTagValueDict
-        
+    // incomplete, need to add all tags here
+    func setPushPaymentData(tag: String, value: String) {
+        switch tag {
+        case "00":
+            pushPaymentData?.payloadFormatIndicator = value
+            break
+        case "01":
+            pushPaymentData?.pointOfInitiationMethod = value
+            break
+        case "26":
+            setSubTagDict(rootTag: tag, code: value)
+            let maiData = MAIData()
+            maiData.setRootTag(tag)
+            maiData.AID = getSubTagValue(rootTag: tag, tag: "00")
+            do {
+                try pushPaymentData?.setDynamicMAIDTag(maiData)
+            } catch {
+                if (isLogRequired) {
+                    print(error)
+                }
+            }
+            break
+        case "52":
+            pushPaymentData?.merchantCategoryCode = value
+            break
+        case "53":
+            pushPaymentData?.transactionCurrencyCode = value
+            break
+        case "55":
+            pushPaymentData?.tipOrConvenienceIndicator = value
+            break
+        case "58":
+            pushPaymentData?.countryCode = value
+            break
+        case "59":
+            pushPaymentData?.merchantName = value
+            break
+        case "60":
+            pushPaymentData?.merchantCity = value
+            break
+        case "61":
+            pushPaymentData?.postalCode = value
+            break
+        case "62":
+            setSubTagDict(rootTag: tag, code: value)
+            let additionalData = AdditionalData()
+            // tag 00 is received here for LankaQR but no 00 subtag defined
+            additionalData.setRootTag(tag)
+            additionalData.referenceId = getSubTagValue(rootTag: tag, tag: "05")
+            pushPaymentData?.additionalData = additionalData
+            break
+        case "63":
+//            pushPaymentData?.crc = value  // CRC value is automatically calculated
+            break
+        default:
+            break
+        }
+    }
+    
+    func setSubTagDict(rootTag: String, code: String) {
         let full = code
         var rest = ""
 
         let tag = (full as NSString).substring(to: 2)
-        //    _tagArr = [_tagArr arrayByAddingObject:tag];
         rest = (full as NSString).substring(from: 2)
 
         let length = (rest as NSString).substring(to: 2)
         rest = (rest as NSString).substring(from: 2)
 
         let value = (rest as NSString).substring(to: Int(length) ?? 0)
-        //    _valueArr = [_valueArr arrayByAddingObject:value];
         rest = (rest as NSString).substring(from: Int(length) ?? 0)
-
-        subTagValueDict?[tag] = value as AnyObject
-
+        
+        let currentTagValueDict = NSMutableDictionary()
+        currentTagValueDict[tag] = value
+        subTagValueDict![rootTag] = currentTagValueDict
+        
         if rest.count > 0 {
-            parseSubData(code: rest, subTagValueDict: subTagValueDict)
+            setSubTagDict(rootTag:rootTag, code: rest)
         }
     }
     
-    public func getTagValueDict() -> NSMutableDictionary? {
-        return tagValueDict
+    public func getSubTagValue(rootTag: String, tag: String) -> String {
+        var result = ""
+        var rootTagDict: NSMutableDictionary?
+        
+        // find dictionary for rootTag
+        if let dict = subTagValueDict {
+            for (key, value) in dict {
+                if (rootTag == key as! String) {
+                    rootTagDict = value as? NSMutableDictionary
+                    break
+                }
+            }
+        }
+        
+        // find value in selected dictionary
+        if let dict = rootTagDict {
+            for (key, value) in dict {
+                if (tag == key as! String) {
+                    result = value as! String
+                    break
+                }
+            }
+        }
+        return result
     }
     
-    public func getSubTagValueDict62() -> NSMutableDictionary? {
-        return subTagValueDict62
+    func generateModifiedQRString() {
+        let sortedDict = getSortedDict(inputDict: tagValueDict)
+        for (key, value) in sortedDict {
+            if (String(key) == "62") {
+                let subTagDict62 = subTagValueDict!["62"] as! NSMutableDictionary?
+                let sortedDict = getSortedDict(inputDict: subTagDict62)
+                
+                var subTag62String = ""
+                for (key, value) in sortedDict {
+                    let keyString = zeroPadLength(value: String(key))
+                    if (keyString != "00") {
+                        subTag62String += keyString
+                        subTag62String += zeroPadLength(value: String(value.count))
+                        subTag62String += value
+                    }
+                }
+                if (subTag62String.count > 0) {
+                    modifiedQRString? += "62"
+                    modifiedQRString? += zeroPadLength(value: String(subTag62String.count))
+                    modifiedQRString? += subTag62String
+                }
+            } else {
+                modifiedQRString? += zeroPadLength(value: String(key))
+                modifiedQRString? += zeroPadLength(value: String(value.count))
+                modifiedQRString? += value
+            }
+        }
     }
     
-    public func getSubTagValueDict84() -> NSMutableDictionary? {
-        return subTagValueDict84
+    func zeroPadLength(value: String) -> String {
+        var result = value
+        if (value.count < 2) {
+            result = "0" + result
+        }
+        return result
+    }
+    
+    // Sort inputted dictionary with keys alphabetically.
+    func getSortedDict(inputDict: NSMutableDictionary?) -> [(key: Int, value: String)] {
+        var resultDict = [Int: String]()
+        if let dict = inputDict {
+            for (key, value) in dict {
+                let keyStr = Int(key as! String)
+                resultDict[keyStr!] = value as? String
+            }
+        }
+        let sorted = resultDict.sorted(by: { $0.key < $1.key })
+        return sorted
     }
 }

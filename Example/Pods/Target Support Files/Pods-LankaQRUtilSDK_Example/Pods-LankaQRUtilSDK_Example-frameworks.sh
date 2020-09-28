@@ -198,9 +198,11 @@ fi
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/LankaQRUtilSDK/LankaQRUtilSDK.framework"
+  install_framework "${PODS_ROOT}/MPQRCoreSDK/Frameworks/MPQRCoreSDK.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/LankaQRUtilSDK/LankaQRUtilSDK.framework"
+  install_framework "${PODS_ROOT}/MPQRCoreSDK/Frameworks/MPQRCoreSDK.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

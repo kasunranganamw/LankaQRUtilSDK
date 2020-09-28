@@ -315,10 +315,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LankaQRUtilSDK_Example/Pods-LankaQRUtilSDK_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/LankaQRUtilSDK/LankaQRUtilSDK.framework",
+				"${PODS_ROOT}/MPQRCoreSDK/Frameworks/MPQRCoreSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LankaQRUtilSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MPQRCoreSDK.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

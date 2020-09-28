@@ -8,6 +8,7 @@
 
 import UIKit
 import LankaQRUtilSDK
+import MPQRCoreSDK
 
 class ViewController: UIViewController {
 
@@ -16,11 +17,16 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let lankaQRReader = LankaQRReader()
-        if (lankaQRReader.parseQR(qrString: "0002010102112632002816728000581200000000100000055204581253031445502015802LK5909Vits Food6007Colombo61050080062580032537c0a88562e4a599cab63d1992f0dac05181600766683296-000563042AB7")) {
-            let tagValueDict = lankaQRReader.getTagValueDict()
-            let subTagValueDict62 = lankaQRReader.getSubTagValueDict62()
-            let subTagValueDict84 = lankaQRReader.getSubTagValueDict84()
-            print("SUCCESS")
+        lankaQRReader.setLogging(logRequired: true)
+        let pushPaymentData = lankaQRReader.parseQR(qrString: "0002010102112632002816728000581200000000100000055204581253031445502015802LK5909Vits Food6007Colombo61050080062580032537c0a88562e4a599cab63d1992f0dac05181600766683296-000563042AB7") // Sample QR String
+        if ((pushPaymentData) != nil) {
+            let result: String?
+            do {
+                try result = pushPaymentData?.generatePushPaymentString()
+                print(result!)
+            } catch {
+                
+            }
         } else {
             print("FAILED")
         }
