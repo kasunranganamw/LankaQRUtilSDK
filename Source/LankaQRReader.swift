@@ -17,6 +17,7 @@ public class LankaQRReader {
     var pushPaymentData: PushPaymentData?
     var modifiedPushPaymentData: PushPaymentData?
     var isLogRequired: Bool
+    var isError: Bool
     
     public init() {
         originalQRString = ""
@@ -26,6 +27,7 @@ public class LankaQRReader {
         pushPaymentData = PushPaymentData()
         modifiedPushPaymentData = PushPaymentData()
         isLogRequired = false
+        isError = false
     }
     
     public func getTagValueDict() -> NSMutableDictionary? {
@@ -64,19 +66,22 @@ public class LankaQRReader {
                 print("-------------------- ", error, " --------------------\n-------------------- Generating New Push Payment Data --------------------\n")
             }
             generatePushPaymentData()
+            if (isError) {
+                return nil
+            } else {
+                return modifiedPushPaymentData
+            }
         }
-        
-        return modifiedPushPaymentData
     }
     
     func generatePushPaymentData() {
         self.parseData(code: originalQRString!)
         
-        if let dict = tagValueDict {
-            for (key, value) in dict {
-                setPushPaymentData(tag: key as! String, value: value as! String)
-            }
-        }
+//        if let dict = tagValueDict {
+//            for (key, value) in dict {
+//                setPushPaymentData(tag: key as! String, value: value as! String)
+//            }
+//        }
         
         generateModifiedQRString()
         if (isLogRequired) {
@@ -95,19 +100,33 @@ public class LankaQRReader {
                 print(error)
             }
         }
-        
     }
     
     func parseData(code: String) {
         let full = code
         var rest = ""
-
+        
+        if (full.count < 4) {
+            isError = true
+            return
+        }
         let tag = (full as NSString).substring(to: 2)
         rest = (full as NSString).substring(from: 2)
-
+        
+        if (rest.count < 4) {
+            isError = true
+            return
+        }
         let length = (rest as NSString).substring(to: 2)
         rest = (rest as NSString).substring(from: 2)
-
+        
+        
+        let len = Int(length) ?? 0
+        
+        if (len == 0 || rest.count < len) {
+            isError = true
+            return
+        }
         let value = (rest as NSString).substring(to: Int(length) ?? 0)
         rest = (rest as NSString).substring(from: Int(length) ?? 0)
 

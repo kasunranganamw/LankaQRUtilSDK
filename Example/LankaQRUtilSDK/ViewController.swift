@@ -28,7 +28,7 @@ class ViewController: UIViewController {
                 
             }
         } else {
-            print("FAILED")
+            print("INVALID QR")
         }
     }
 
