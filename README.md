@@ -20,9 +20,11 @@ it, simply add the following line to your Podfile:
 pod 'LankaQRUtilSDK'
 ```
 
+Please remove MPQRCodeSDK if you already have, this Pod comes with the latest MPQRCodeSDK
+
 ## Author
 
-kasunranganamw@gmail.com, kasun_r@epiclanka.net
+kasunranganamw@gmail.com,  owimalasuriya@gmail.com
 
 ## License
 
