@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LankaQRUtilSDK'
-  s.version          = '1.0.3'
+  s.version          = '1.0.4'
   s.summary          = 'Lanka QR Validation.'
 
 # This description is used to generate tags and improve search results.
@@ -42,5 +42,5 @@ LankaQRUtilSDK is an awesome pod that will fix Lanka QR scanning issue in iOS
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'MPQRCoreSDK', '~> 2.0.6'
+  s.dependency 'MPQRCoreSDK'
 end
