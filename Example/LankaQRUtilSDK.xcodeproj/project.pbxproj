@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C54FCDE2526EC6E005D7F68 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C54FCDD2526EC6E005D7F68 /* FirstViewController.m */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -28,6 +29,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C54FCDB2526EC6D005D7F68 /* LankaQRUtilSDK_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LankaQRUtilSDK_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		0C54FCDC2526EC6E005D7F68 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		0C54FCDD2526EC6E005D7F68 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		44F09E6727CE5965787D5269 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		486AF57481BA3F8F3C7AA66F /* LankaQRUtilSDK.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LankaQRUtilSDK.podspec; path = ../LankaQRUtilSDK.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		4E548EC135E6E70FA1EBE8A8 /* Pods_LankaQRUtilSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LankaQRUtilSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +112,9 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				0C54FCDC2526EC6E005D7F68 /* FirstViewController.h */,
+				0C54FCDD2526EC6E005D7F68 /* FirstViewController.m */,
+				0C54FCDB2526EC6D005D7F68 /* LankaQRUtilSDK_Example-Bridging-Header.h */,
 			);
 			name = "Example for LankaQRUtilSDK";
 			path = LankaQRUtilSDK;
@@ -335,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				0C54FCDE2526EC6E005D7F68 /* FirstViewController.m in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,6 +497,8 @@
 			baseConfigurationReference = E057AF9799DF1A3A1B9BD435 /* Pods-LankaQRUtilSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = BCUJ488PHX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LankaQRUtilSDK/Info.plist;
@@ -496,6 +506,8 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LankaQRUtilSDK/LankaQRUtilSDK_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -506,6 +518,8 @@
 			baseConfigurationReference = C7062E4C0E8ABE9D20A47621 /* Pods-LankaQRUtilSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = BCUJ488PHX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LankaQRUtilSDK/Info.plist;
@@ -513,6 +527,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LankaQRUtilSDK/LankaQRUtilSDK_Example-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};

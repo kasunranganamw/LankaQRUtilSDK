@@ -8,7 +8,7 @@
 import Foundation
 import MPQRCoreSDK
 
-public class LankaQRReader {
+@objc public class LankaQRReader: NSObject {
     
     var originalQRString: String?
     var modifiedQRString: String?
@@ -19,7 +19,7 @@ public class LankaQRReader {
     var isLogRequired: Bool
     var isError: Bool
     
-    public init() {
+    override public init() {
         originalQRString = ""
         modifiedQRString = ""
         tagValueDict = NSMutableDictionary()
@@ -30,23 +30,23 @@ public class LankaQRReader {
         isError = false
     }
     
-    public func getTagValueDict() -> NSMutableDictionary? {
+    @objc public func getTagValueDict() -> NSMutableDictionary? {
         return tagValueDict
     }
     
-    public func getOriginalQRString() -> String? {
+    @objc public func getOriginalQRString() -> String? {
         return originalQRString
     }
     
-    public func getModifiedQRString() -> String? {
+    @objc public func getModifiedQRString() -> String? {
         return modifiedQRString
     }
     
-    public func setLogging(logRequired: Bool) {
+    @objc public func setLogging(logRequired: Bool) {
         isLogRequired = logRequired
     }
     
-    public func parseQR(qrString: String) -> PushPaymentData? {
+    @objc public func parseQR(qrString: String) -> PushPaymentData? {
         originalQRString = qrString
         if (isLogRequired) {
             print("-------------------- ORIGINAL STRING --------------------\n", originalQRString!)
