@@ -77,11 +77,11 @@ import MPQRCoreSDK
     func generatePushPaymentData() {
         self.parseData(code: originalQRString!)
         
-//        if let dict = tagValueDict {
-//            for (key, value) in dict {
-//                setPushPaymentData(tag: key as! String, value: value as! String)
-//            }
-//        }
+        if let dict = tagValueDict {
+            for (key, value) in dict {
+                setPushPaymentData(tag: key as! String, value: value as! String)
+            }
+        }
         
         generateModifiedQRString()
         if (isLogRequired) {
@@ -189,7 +189,10 @@ import MPQRCoreSDK
             pushPaymentData?.additionalData = additionalData
             break
         case "63":
-//            pushPaymentData?.crc = value  // CRC value is automatically calculated
+            pushPaymentData?.crc = value  // CRC value is automatically calculated
+            break
+        case "85":
+            setSubTagDict(rootTag: tag, code: value)
             break
         default:
             break
