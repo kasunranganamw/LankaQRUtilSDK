@@ -24,7 +24,6 @@
 		69DDC0C2CE236440B992AAA85FDDBE18 /* LankaQRUtilSDK-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6AA8294DBBE51B01BDCAC6DC286EF9C8 /* LankaQRUtilSDK-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6AABF92BC5B41ED035551574FFB6B81A /* Pods-LankaQRUtilSDK_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ECC6CDEA56FFFEB46E3679DECE30F8B3 /* Pods-LankaQRUtilSDK_Example-dummy.m */; };
 		A45DAF7E4F9CEEF0FAE576EAC115EECD /* Pods-LankaQRUtilSDK_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EE9825AFBF5E996F19C532FC888871 /* Pods-LankaQRUtilSDK_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AAECAC4A2DC43CC5663D3B29DB7FEC2B /* LankaQRTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB33A0108BE7885F05420843B54ECF /* LankaQRTags.swift */; };
 		C910E6D9C9CD991A4CE16B3AAC96FA68 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
 		D16AF33A9EBAD7468B208AF89B6FF05B /* Pods-LankaQRUtilSDK_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 158D31FE8AFCA0F25781D272FBC52EDC /* Pods-LankaQRUtilSDK_Tests-dummy.m */; };
 		D5A7B79EDFCD1B21479C80D9B55F7557 /* Pods-LankaQRUtilSDK_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9DD560C5C275C91FB90347AF1C2E1180 /* Pods-LankaQRUtilSDK_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -95,7 +94,6 @@
 		ABC450E27D0541D55D05EFF2861F3C88 /* Pods-LankaQRUtilSDK_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LankaQRUtilSDK_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BADB368FCC9B235B6F2A8CC2A0B436C3 /* LankaQRReader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LankaQRReader.swift; path = Source/LankaQRReader.swift; sourceTree = "<group>"; };
 		BEB720FDF600D94E01B276653BFD7F84 /* MPQRCoreSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MPQRCoreSDK.debug.xcconfig; sourceTree = "<group>"; };
-		C5FB33A0108BE7885F05420843B54ECF /* LankaQRTags.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LankaQRTags.swift; path = Source/LankaQRTags.swift; sourceTree = "<group>"; };
 		C7574F8FAAB1C0215577E381E76C7C8E /* LankaQRUtilSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = LankaQRUtilSDK.debug.xcconfig; sourceTree = "<group>"; };
 		CC85D79487B9998E411D05474B4797E4 /* Pods-LankaQRUtilSDK_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LankaQRUtilSDK_Example-frameworks.sh"; sourceTree = "<group>"; };
 		DE1694C11AB2B4E695BDC11B3DFE2B15 /* Pods-LankaQRUtilSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LankaQRUtilSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				BADB368FCC9B235B6F2A8CC2A0B436C3 /* LankaQRReader.swift */,
-				C5FB33A0108BE7885F05420843B54ECF /* LankaQRTags.swift */,
 				DC81529497BFE84F862B492E7C83F106 /* Pod */,
 				A7C6D15CAF31E57DE4927F1B608F9482 /* Support Files */,
 			);
@@ -456,7 +453,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9B8CD9AE6D739579179F0AF5C9EB6B6 /* LankaQRReader.swift in Sources */,
-				AAECAC4A2DC43CC5663D3B29DB7FEC2B /* LankaQRTags.swift in Sources */,
 				F57082A296ECA58766014B8DB0D8C338 /* LankaQRUtilSDK-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

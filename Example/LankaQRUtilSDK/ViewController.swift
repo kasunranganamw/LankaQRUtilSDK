@@ -24,9 +24,10 @@ class ViewController: UIViewController {
         
         let pushPaymentData = lankaQRReader.parseQR(qrString: "0002010102112632002816861001000000000000022202225204939953031445802LK5911ABC Grocery6003cbc62130509LOLC_IPAY85310012IPAY_INS_REF0111Q00000147556304AC66") // Sample QR String
         if ((pushPaymentData) != nil) {
-            let result: String?
+            var result: String?
             do {
                 try result = pushPaymentData?.generatePushPaymentString()
+                result = pushPaymentData?.additionalData?.consumerId
                 print("-------------------- RESULT IN SWIFT EXAMPLE --------------------\n", result!)
             } catch {
 

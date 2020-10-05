@@ -185,7 +185,15 @@ import MPQRCoreSDK
             let additionalData = AdditionalData()
             // tag 00 is received here for LankaQR but no 00 subtag defined
             additionalData.setRootTag(tag)
+            additionalData.billNumber = getSubTagValue(rootTag: tag, tag: "01")
+            additionalData.mobileNumber = getSubTagValue(rootTag: tag, tag: "02")
+            additionalData.storeId = getSubTagValue(rootTag: tag, tag: "03")
+            additionalData.loyaltyNumber = getSubTagValue(rootTag: tag, tag: "04")
             additionalData.referenceId = getSubTagValue(rootTag: tag, tag: "05")
+            additionalData.consumerId = getSubTagValue(rootTag: tag, tag: "06")
+            additionalData.terminalId = getSubTagValue(rootTag: tag, tag: "07")
+            additionalData.purpose = getSubTagValue(rootTag: tag, tag: "08")
+            additionalData.additionalConsumerDataRequest = getSubTagValue(rootTag: tag, tag: "09")
             pushPaymentData?.additionalData = additionalData
             break
         case "63":
