@@ -14,6 +14,8 @@ import MPQRCoreSDK
     var modifiedQRString: String?
     var tagValueDict: NSMutableDictionary?
     var subTagValueDict: NSMutableDictionary?
+    var currentRootTag: String?
+    var currentSubTagValueDict: NSMutableDictionary?
     var pushPaymentData: PushPaymentData?
     var modifiedPushPaymentData: PushPaymentData?
     var isLogRequired: Bool
@@ -24,6 +26,7 @@ import MPQRCoreSDK
         modifiedQRString = ""
         tagValueDict = NSMutableDictionary()
         subTagValueDict = NSMutableDictionary()
+        currentSubTagValueDict = NSMutableDictionary()
         pushPaymentData = PushPaymentData()
         modifiedPushPaymentData = PushPaymentData()
         isLogRequired = false
@@ -53,13 +56,8 @@ import MPQRCoreSDK
         }
         
         let mpqrPushPaymentData: PushPaymentData
-        let mpqrResult: String
         do {
-            try mpqrPushPaymentData = MPQRParser.parseWithoutTagValidationAndCRC(originalQRString!)
-            try mpqrResult = modifiedPushPaymentData!.generatePushPaymentString()
-            if (isLogRequired) {
-                print("-------------------- MPQR PUSH PAYMENT DATA --------------------\n", mpqrResult)
-            }
+            try mpqrPushPaymentData = MPQRParser.parseWithoutTagValidation(originalQRString!)
             return mpqrPushPaymentData
         } catch {
             if (isLogRequired) {
@@ -220,9 +218,12 @@ import MPQRCoreSDK
         let value = (rest as NSString).substring(to: Int(length) ?? 0)
         rest = (rest as NSString).substring(from: Int(length) ?? 0)
         
-        let currentTagValueDict = NSMutableDictionary()
-        currentTagValueDict[tag] = value
-        subTagValueDict![rootTag] = currentTagValueDict
+        if (currentRootTag != rootTag) {
+            currentSubTagValueDict = NSMutableDictionary()
+            currentRootTag = rootTag
+        }
+        currentSubTagValueDict![tag] = value
+        subTagValueDict![rootTag] = currentSubTagValueDict
         
         if rest.count > 0 {
             setSubTagDict(rootTag:rootTag, code: rest)

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'LankaQRUtilSDK'
-  s.version          = '1.0.8'
+  s.version          = '1.0.9'
   s.summary          = 'Lanka QR Validation.'
 
 # This description is used to generate tags and improve search results.
