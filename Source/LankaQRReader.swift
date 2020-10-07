@@ -88,10 +88,6 @@ import MPQRCoreSDK
         
         do {
             try modifiedPushPaymentData = MPQRParser.parseWithoutTagValidationAndCRC(modifiedQRString!)
-//            try result = modifiedPushPaymentData!.generatePushPaymentString()
-//            if (isLogRequired) {
-//                print("-------------------- NEW PUSH PAYMENT DATA --------------------\n", result)
-//            }
         } catch {
             if (isLogRequired) {
                 print(error)
