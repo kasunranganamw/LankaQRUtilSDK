@@ -86,7 +86,6 @@ import MPQRCoreSDK
             print("-------------------- NEW STRING --------------------\n", modifiedQRString!)
         }
         
-        let result: String
         do {
             try modifiedPushPaymentData = MPQRParser.parseWithoutTagValidationAndCRC(modifiedQRString!)
 //            try result = modifiedPushPaymentData!.generatePushPaymentString()
